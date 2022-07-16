@@ -1,6 +1,6 @@
 import React from "react";
-import { ScrollView } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import Home from "../Screen/Home";
 import EcommerceDetails from "../Screen/EcommerceDetails";
 

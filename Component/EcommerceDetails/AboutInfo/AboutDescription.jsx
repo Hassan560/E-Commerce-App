@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const AboutDescription = ({item}) => {
+const AboutDescription = ({ item }) => {
   return (
     <View style={{ paddingHorizontal: 20, marginTop: 25 }}>
       <View
@@ -15,7 +15,7 @@ const AboutDescription = ({item}) => {
         <Text style={{ color: "gray" }}>{item.rating}</Text>
       </View>
       <Text style={{ color: "gray", marginTop: 10, textAlign: "justify" }}>
-        {item.detail}
+        {item.products.description}
       </Text>
     </View>
   );

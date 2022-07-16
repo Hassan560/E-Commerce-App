@@ -10,7 +10,7 @@ function Header({ navigation, CartReducer }) {
   return (
     <View style={styles.headerContainer}>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <MaterialIcons
             name="menu"
             size={30}

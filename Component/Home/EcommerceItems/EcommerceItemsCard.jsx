@@ -15,16 +15,16 @@ const EcommerceItemsCard = ({ item, navigation }) => {
         <View style={styles.ecommerceItemsContainer}>
           <EcommerceItemsImage
             image={
-              item.image_url
-                ? item.image_url
+              item.products.imageUrl
+                ? item.products.imageUrl
                 : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgDWLUjxsdUpWjjhXkNZVtpLowo5NlX8BEW6Q72IvLkLBApDrdYGBIkKWEd6u2sahsTtc&usqp=CAU"
             }
           />
           <EcommerceItemsInfo
-            name={item.name}
-            price={item.price}
-            rating={item.rating}
-            image_url={item.image_url}
+            name={item.products.name}
+            price={item.products.price}
+            rating={item.products.rating}
+            imageUrl={item.products.imageUrl}
           />
         </View>
       </View>

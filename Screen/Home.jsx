@@ -11,6 +11,10 @@ import { useFocusEffect } from "@react-navigation/native";
 import Data from "../Data/ProductData";
 import Items from "../Data/CategoriesData";
 
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../Firebase/Firebase'
+
+
 const Home = ({ navigation }) => {
   // product
   const [product, setProduct] = useState([]);
@@ -22,23 +26,33 @@ const Home = ({ navigation }) => {
   const [initialState, setInitialState] = useState([]);
   const [productCtg, setProductCtg] = useState([]);
 
+  // get data from firebase firestore
+  const getData = async () => {
+    const data = await getDocs(collection(db, "products"))
+    setProduct(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    setProductCtg(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    setProductFilter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    setInitialState(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  }
+
   useFocusEffect(
     React.useCallback(() => {
-      setProduct(Data);
-      setProductFilter(Data);
+      getData();
+      // setProductFilter(getData());
       setFocus(false);
       setCategories(Items);
       setActiveTab(-1);
-      setInitialState(Data);
-      setProductCtg(Data);
+      // setInitialState(getData());
+      // setProductCtg(getData());
 
       return () => {
-        setProduct([]);
-        setProductFilter([]);
+        // getData()
+        // setProduct([]);
+        // setProductFilter([]);
         setFocus();
         setCategories([]);
         setActiveTab();
-        setInitialState();
+        // setInitialState();
       };
     }, [])
   );
@@ -47,9 +61,9 @@ const Home = ({ navigation }) => {
   const searchProduct = (text) => {
     setProductFilter(
       product.filter((index) =>
-        index.name.toLowerCase().includes(text.toLowerCase())
-        )
-        );
+        index.products.name.toLowerCase().includes(text.toLowerCase())
+      )
+    );
   };
 
   const openItems = () => {
@@ -66,9 +80,9 @@ const Home = ({ navigation }) => {
       ctg === "all"
         ? [setProductCtg(initialState), setActiveTab(true)]
         : [
-            setProductCtg(product.filter((index) => index.category === ctg)),
-            setActiveTab(true),
-          ];
+          setProductCtg(product.filter((index) => index.products.category === ctg)),
+          setActiveTab(true),
+        ];
     }
   };
 
@@ -132,7 +146,7 @@ const styles = StyleSheet.create({
   nofoundtext: {
     fontSize: 18,
     fontWeight: "bold",
-    textAlign:'center'
+    textAlign: 'center'
   },
   textcontainer: {
     height: 300,

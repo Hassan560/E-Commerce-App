@@ -14,8 +14,8 @@ const EcommerceItems = ({ navigation, productCtg }) => {
           marginBottom: 20,
         }}
       >
-        {productCtg.map((item, index) => (
-          <EcommerceItemsCard item={item} key={index} navigation={navigation} />
+        {productCtg.map((item) => (
+          <EcommerceItemsCard item={item} key={item.id} navigation={navigation} />
         ))}
       </View>
     </>

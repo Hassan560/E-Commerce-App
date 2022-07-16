@@ -4,7 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 // import HomeStackNavigation from "./HomeStackNavigation";
 import { AuthContext } from "../Context/AuthProvider";
 import { auth } from "../Firebase/Firebase";
-import BottomTabNavigation from "./BottomTabNavigation";
+import DrawerNavigation from "./DrawerNavigation";
+// import BottomTabNavigation from "./BottomTabNavigation";
 
 const Routes = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      {user ? <BottomTabNavigation /> : <BottomTabNavigation />}
+      {user ? <DrawerNavigation /> : <DrawerNavigation />}
     </NavigationContainer>
   );
 };

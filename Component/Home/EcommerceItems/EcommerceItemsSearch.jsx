@@ -22,13 +22,13 @@ const EcommerceItemsSearch = ({ productFilter, navigation }) => {
           >
             <View key={index} style={styles.container}>
               <Image
-                source={item.image_url}
+                source={{uri: item.products.imageUrl}}
                 style={{ width: 100, height: 100 }}
                 o
               />
               <View style={styles.text}>
-                <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
-                <Text>{item.detail}</Text>
+                <Text style={{ fontWeight: "bold" }}>{item.products.name}</Text>
+                <Text>{item.products.description}</Text>
               </View>
             </View>
           </TouchableOpacity>

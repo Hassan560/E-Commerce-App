@@ -12,7 +12,7 @@ const AboutInfo = ({item}) => {
       }}
     >
       <Text style={{ fontSize: 18, fontWeight: "bold", width: 150 }}>
-        {item.name}
+        {item.products.name}
       </Text>
       <Text
         style={{
@@ -25,7 +25,7 @@ const AboutInfo = ({item}) => {
           color: COLORS.yellow,
         }}
       >
-        {item.price}
+        {item.products.price}
       </Text>
     </View>
   );

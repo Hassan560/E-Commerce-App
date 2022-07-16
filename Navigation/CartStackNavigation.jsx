@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import Cart from "../Screen/Cart/Cart";
 import CheckoutTabNavigation from "./CheckoutTabNavigation";
+import OrderComplete from "../Screen/OrderComplete/OrderComplete";
 
 const CartStack = createNativeStackNavigator();
 
@@ -17,7 +18,8 @@ const CartStackNavigation = () => {
       }}
     >
       <CartStack.Screen name="Cart" component={Cart} />
-      <CartStack.Screen name="Checkout" component={CheckoutTabNavigation} />
+      <CartStack.Screen name="OrderComplete" component={OrderComplete} options={{ headerShown: false }} />
+      {/* <CartStack.Screen name="Checkout" component={CheckoutTabNavigation} /> */}
     </CartStack.Navigator>
   );
 };

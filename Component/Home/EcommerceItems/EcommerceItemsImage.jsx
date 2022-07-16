@@ -6,7 +6,7 @@ import COLORS from "../../../Colors";
 const EcommerceItemsImage = ({ image }) => {
   return (
     <>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
       <TouchableOpacity style={styles.heartIcon}>
         <Entypo name="heart" color={COLORS.white} size={15} />
       </TouchableOpacity>

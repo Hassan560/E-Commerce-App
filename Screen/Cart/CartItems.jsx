@@ -1,22 +1,20 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
 
 import { Avatar } from "react-native-elements";
 
 const CartItems = ({ item }) => {
-  return (
+  return (  
     <View style={styles.cartcontainer}>
-      <Avatar rounded size={85} source={item.item.product.image_url} />
+      <Avatar rounded size={85} source={{uri: item.item.imageUrl}} />
       <View style={{ flexDirection: "row", flex: 0.8 }}>
-        <Text style={styles.name}>{item.item.product.name}</Text>
+        <Text style={styles.name}>{item.item.name}</Text>
       </View>
       <View>
-        <Text style={styles.price}>{item.item.product.price}</Text>
+        <Text style={styles.price}>{item.item.price}</Text>
       </View>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   cartcontainer: {
     flexDirection: "row",

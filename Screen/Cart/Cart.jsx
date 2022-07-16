@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   View,
@@ -30,17 +30,33 @@ import CartItems from "./CartItems";
 
 import { Ionicons } from "react-native-vector-icons";
 
+import { db } from '../../Firebase/Firebase'
+import { addDoc, collection, Timestamp } from 'firebase/firestore'
+
+import LottieView from "lottie-react-native";
+
 const Cart = (props) => {
 
+  const [loading, setLoading] = useState(false)
+
   const total = props.CartReducer.map((item) =>
-    Number(item.product.price.replace("Rs:", ""))
+    Number(item.price.replace("Rs:", ""))
   ).reduce((prev, curr) => prev + curr, 0);
 
-  // const totalRs = total.toLocaleString("en", {
-  //   style: "currency",
-  //   currency: "PKR",
-  // });
-
+  const orderCompleted = () => {
+    const productData = props.CartReducer
+    const Products = productData.map((elem) => elem.name + "\n" + elem.price + "\n" + elem.imageUrl)
+    setLoading(true)
+    addDoc(collection(db, "orders"), {
+      Products,
+      time: Timestamp.fromDate(new Date())
+    }).then(() => {
+      setTimeout(() => {
+        setLoading(false)
+        props.navigation.navigate('OrderComplete')
+      }, 2500)
+    })
+  }
   return (
     <>
       {props.CartReducer.length ? (
@@ -66,7 +82,6 @@ const Cart = (props) => {
               previewOpenDelay={3000}
               friction={1000}
               tension={40}
-              keyExtractor={(data) => data.id}
             />
           </ScrollView>
           <View style={styles.bottomcontainer}>
@@ -83,7 +98,7 @@ const Cart = (props) => {
                 title="Checkout"
                 buttonStyle={styles.cartButton}
                 titleStyle={styles.cartButtonTitle}
-                onPress={() => props.navigation.navigate("Checkout")}
+                onPress={() => orderCompleted()}
               />
             </View>
           </View>
@@ -98,6 +113,24 @@ const Cart = (props) => {
           </Text>
         </View>
       )}
+      {loading ? (
+        <View style={{
+          backgroundColor: 'black',
+          position: 'absolute',
+          opacity: 0.6,
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          width: '100%'
+        }}>
+          <LottieView
+            style={{ height: 200 }}
+            source={require("../../assets/Animation/8428-loader.json")}
+            autoPlay
+            speed={3}
+          />
+        </View>
+      ) : (<></>)}
     </>
   );
 };

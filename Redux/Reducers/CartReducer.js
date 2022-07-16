@@ -8,9 +8,9 @@ const CartReducer = (state = initialState, action) => {
       return [...state, action.payload];
     case REMOVE_FROM_CART:
       return state.filter((cartitem) => cartitem !== action.payload);
-    case CLEAR_CART:
-      return (state = []);
-    }
+      case CLEAR_CART:
+        return (state = []);
+      }
   return state;
 };
 

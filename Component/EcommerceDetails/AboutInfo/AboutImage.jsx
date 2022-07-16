@@ -7,7 +7,7 @@ const AboutImage = ({item}) => {
   return (
     <>
       <Image
-        source={item.image_url}
+        source={{uri: item.products.imageUrl}}
         style={{
           resizeMode: "cover",
           width: "100%",

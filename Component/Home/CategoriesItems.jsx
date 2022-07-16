@@ -52,7 +52,7 @@ export default function CategoriesItems(props) {
             onPress={() => {
               changeCatg(item.title), setActiveTab(categories.indexOf(item));
             }}
-          >
+          > 
             <View
               style={[
                 styles.badge,

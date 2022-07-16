@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import * as action from "../../../Redux/Action/CartAction";
 
 const EcommerceItemsInfo = (props) => {
-  const { name, price, rating,image_url } = props;
+  const { name, price, rating, imageUrl } = props;
 
   return (
     <View style={styles.ecommerceInfo}>
@@ -17,7 +17,7 @@ const EcommerceItemsInfo = (props) => {
         <Text style={{ fontWeight: "600" }}>{price}</Text>
       </View>
       <View>
-        <Text style={styles.ecommerceInfoRating}>{rating}</Text>
+        <Text style={styles.ecommerceInfoRating}> ⭐ ({rating})</Text>
         <TouchableOpacity
           style={styles.ecommerceIcon}
           onPress={() => props.addItemsToCart(props)}
@@ -32,7 +32,7 @@ const EcommerceItemsInfo = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addItemsToCart: (product) =>
-      dispatch(action.addToCart({ quantity: 1, product })),
+      dispatch(action.addToCart(product)),
   };
 };
 

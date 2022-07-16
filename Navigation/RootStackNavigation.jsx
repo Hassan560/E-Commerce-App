@@ -1,9 +1,12 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import SplashScreen from "../Screen/SplashScreen";
 import LoginScreen from "../Screen/LoginScreen";
 import SignUpScreen from "../Screen/SignUpScreen";
+
 import { StatusBar } from "react-native";
+
 import COLORS from "../Colors";
 
 const RootStack = createNativeStackNavigator();
